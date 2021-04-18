@@ -5,6 +5,7 @@
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
         stopOnFailure="false"
+        backupGlobals="true"
         bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="Facebook PHP SDK Test Suite">

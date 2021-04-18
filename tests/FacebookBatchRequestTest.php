@@ -28,15 +28,16 @@ use Facebook\FacebookApp;
 use Facebook\FacebookRequest;
 use Facebook\FacebookBatchRequest;
 use Facebook\FileUpload\FacebookFile;
+use PHPUnit\Framework\TestCase;
 
-class FacebookBatchRequestTest extends \PHPUnit_Framework_TestCase
+class FacebookBatchRequestTest extends TestCase
 {
     /**
      * @var FacebookApp
      */
     private $app;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->app = new FacebookApp('123', 'foo_secret');
     }
@@ -80,31 +81,25 @@ class FacebookBatchRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertRequestContainsAppAndToken($request, $customApp, 'foo_token');
     }
 
-    /**
-     * @expectedException \Facebook\Exceptions\FacebookSDKException
-     */
     public function testWillThrowWhenNoThereIsNoAppFallback()
     {
+        $this->expectException('\Facebook\Exceptions\FacebookSDKException');
         $batchRequest = new FacebookBatchRequest();
 
         $batchRequest->addFallbackDefaults(new FacebookRequest(null, 'foo_token'));
     }
 
-    /**
-     * @expectedException \Facebook\Exceptions\FacebookSDKException
-     */
     public function testWillThrowWhenNoThereIsNoAccessTokenFallback()
     {
+        $this->expectException('\Facebook\Exceptions\FacebookSDKException');
         $request = new FacebookBatchRequest();
 
         $request->addFallbackDefaults(new FacebookRequest($this->app));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testAnInvalidTypeGivenToAddWillThrow()
     {
+        $this->expectException('\InvalidArgumentException');
         $request = new FacebookBatchRequest();
 
         $request->add('foo');
@@ -168,21 +163,17 @@ class FacebookBatchRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertRequestsMatch($requests, $formattedRequests);
     }
 
-    /**
-     * @expectedException \Facebook\Exceptions\FacebookSDKException
-     */
     public function testAZeroRequestCountWithThrow()
     {
+        $this->expectException('\Facebook\Exceptions\FacebookSDKException');
         $batchRequest = new FacebookBatchRequest($this->app, [], 'foo_token');
 
         $batchRequest->validateBatchRequestCount();
     }
 
-    /**
-     * @expectedException \Facebook\Exceptions\FacebookSDKException
-     */
     public function testMoreThanFiftyRequestsWillThrow()
     {
+        $this->expectException('\Facebook\Exceptions\FacebookSDKException');
         $batchRequest = $this->createBatchRequest();
 
         $this->createAndAppendRequestsTo($batchRequest, 51);
@@ -190,6 +181,9 @@ class FacebookBatchRequestTest extends \PHPUnit_Framework_TestCase
         $batchRequest->validateBatchRequestCount();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLessOrEqualThanFiftyRequestsWillNotThrow()
     {
         $batchRequest = $this->createBatchRequest();

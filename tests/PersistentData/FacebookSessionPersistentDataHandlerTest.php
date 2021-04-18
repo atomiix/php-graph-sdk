@@ -24,14 +24,13 @@
 namespace Facebook\Tests\PersistentData;
 
 use Facebook\PersistentData\FacebookSessionPersistentDataHandler;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-class FacebookSessionPersistentDataHandlerTest extends \PHPUnit_Framework_TestCase
+class FacebookSessionPersistentDataHandlerTest extends MockeryTestCase
 {
-    /**
-     * @expectedException \Facebook\Exceptions\FacebookSDKException
-     */
     public function testInactiveSessionsWillThrow()
     {
+        $this->expectException('\Facebook\Exceptions\FacebookSDKException');
         new FacebookSessionPersistentDataHandler();
     }
 

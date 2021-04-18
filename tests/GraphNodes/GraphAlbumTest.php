@@ -26,7 +26,7 @@ namespace Facebook\Tests\GraphNodes;
 use Mockery as m;
 use Facebook\GraphNodes\GraphNodeFactory;
 
-class GraphAlbumTest extends \PHPUnit_Framework_TestCase
+class GraphAlbumTest extends m\Adapter\Phpunit\MockeryTestCase
 {
 
     /**
@@ -34,7 +34,7 @@ class GraphAlbumTest extends \PHPUnit_Framework_TestCase
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->responseMock = m::mock('\\Facebook\\FacebookResponse');
     }

@@ -24,23 +24,20 @@
 namespace Facebook\Tests\PseudoRandomString;
 
 use Facebook\Tests\Fixtures\MyFooBarPseudoRandomStringGenerator;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-class PseudoRandomStringGeneratorTraitTest extends \PHPUnit_Framework_TestCase
+class PseudoRandomStringGeneratorTraitTest extends MockeryTestCase
 {
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testAnInvalidLengthWillThrow()
     {
+        $this->expectException('\InvalidArgumentException');
         $prsg = new MyFooBarPseudoRandomStringGenerator();
         $prsg->validateLength('foo_len');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testALengthThatIsNotAtLeastOneCharacterWillThrow()
     {
+        $this->expectException('\InvalidArgumentException');
         $prsg = new MyFooBarPseudoRandomStringGenerator();
         $prsg->validateLength(0);
     }

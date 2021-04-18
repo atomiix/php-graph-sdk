@@ -24,8 +24,9 @@
 namespace Facebook\Tests\PersistentData;
 
 use Facebook\PersistentData\FacebookMemoryPersistentDataHandler;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-class FacebookMemoryPersistentDataHandlerTest extends \PHPUnit_Framework_TestCase
+class FacebookMemoryPersistentDataHandlerTest extends MockeryTestCase
 {
     public function testCanGetAndSetAVirtualValue()
     {

@@ -24,8 +24,9 @@
 namespace Facebook\Tests\Http;
 
 use Facebook\Http\RequestBodyUrlEncoded;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-class RequestUrlEncodedTest extends \PHPUnit_Framework_TestCase
+class RequestUrlEncodedTest extends MockeryTestCase
 {
     public function testCanProperlyEncodeAnArrayOfParams()
     {

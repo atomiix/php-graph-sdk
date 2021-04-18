@@ -27,18 +27,19 @@ use Facebook\GraphNodes\GraphObjectFactory;
 use Facebook\FacebookApp;
 use Facebook\FacebookRequest;
 use Facebook\FacebookResponse;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
 /**
  * @todo v6: Remove this test
  */
-class GraphObjectFactoryTest extends \PHPUnit_Framework_TestCase
+class GraphObjectFactoryTest extends MockeryTestCase
 {
     /**
      * @var \Facebook\FacebookRequest
      */
     protected $request;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $app = new FacebookApp('123', 'foo_app_secret');
         $this->request = new FacebookRequest(
